@@ -8,6 +8,7 @@ sys.path.append("../../")
 from TCN.poly_music.model import TCN
 from TCN.poly_music.utils import data_generator
 import numpy as np
+from torchsummary import summary
 
 
 parser = argparse.ArgumentParser(description='Sequence Modeling - Polyphonic Music')
@@ -83,7 +84,6 @@ def evaluate(X_data, name='Eval'):
         print(name + " loss: {:.5f}".format(eval_loss))
         return eval_loss
 
-
 def train(ep):
     model.train()
     total_loss = 0
@@ -115,6 +115,7 @@ def train(ep):
 
 
 if __name__ == "__main__":
+    '''
     best_vloss = 1e8
     vloss_list = []
     model_name = "poly_music_{0}.pt".format(args.data)
@@ -137,4 +138,9 @@ if __name__ == "__main__":
     print('-' * 89)
     model = torch.load(open(model_name, "rb"))
     tloss = evaluate(X_test)
-
+    '''
+    #summary(model, [5,10,10])
+    print(X_train.shape)
+    print(X_valid.shape)
+    print(X_test.shape)
+    print(y.shape)
